@@ -138,10 +138,10 @@ const FUR: Record<string, string> = {
 };
 
 const CAT_A = [
-  "........................",
-  "....YY..........YY..YY..",
-  "...YY..........YPY..YPY.",
-  "..YY...........YYYYYYYY.",
+  "....YY..................",
+  "...YY...........YY..YY..",
+  "..YY...........YPY..YPY.",
+  ".YY............YYYYYYYY.",
   ".YY............YYYYYYYY.",
   ".YY............YYYYYYYY.",
   ".YYYYYYYYDYYYDYYYYKKYYY.",
@@ -151,15 +151,15 @@ const CAT_A = [
   "...YYYCCCCCCCCCYYYYYCCY.",
   "...YYYYCCCCCCCYYYYYYYYY.",
   ".....YYYYYYYYYYYYYYYY...",
-  "....YY...YY.....YY..YY..",
-  "....YY...YY.....YY..YY..",
-  "....YY...CC.....YY..CC..",
-  "....CC..........CC......",
+  "....YY..DD......DD.YY...",
+  "....YY..DD......DD.YY...",
+  "....YY.............YY...",
+  "....CC.............CC...",
 ];
 
 const CAT_B = [
-  "........................",
-  "..YY............YY..YY..",
+  "..YY..................",
+  ".YY.............YY..YY..",
   ".YY............YPY..YPY.",
   ".YY............YYYYYYYY.",
   ".YY............YYYYYYYY.",
@@ -171,10 +171,10 @@ const CAT_B = [
   "...YYYCCCCCCCCCYYYYYCCY.",
   "...YYYYCCCCCCCYYYYYYYYY.",
   ".....YYYYYYYYYYYYYYYY...",
-  "....YY...YY.....YY..YY..",
-  "....YY...YY.....YY..YY..",
-  "....CC...YY.....CC..YY..",
-  ".........CC.........CC..",
+  "....DD...YY.....YY.DD...",
+  "....DD...YY.....YY.DD...",
+  ".........YY.....YY......",
+  ".........CC.....CC......",
 ];
 
 function spriteShadow(rows: string[]) {
