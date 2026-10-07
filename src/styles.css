@@ -106,6 +106,7 @@
 @keyframes breathe { 0%,100% { transform: scale(1) } 50% { transform: scale(1.025, 0.985) } }
 @keyframes walk { 0% { transform: translateX(-120px) } 100% { transform: translateX(calc(100vw + 120px)) } }
 @keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-3px) } }
+@keyframes step { 0%,100% { transform: rotate(18deg) } 50% { transform: rotate(-18deg) } }
 @keyframes bounce-soft { 0%,100% { transform: translateY(0) } 50% { transform: translateY(6px) } }
 
 @utility animate-float { animation: float 7s ease-in-out infinite; }
