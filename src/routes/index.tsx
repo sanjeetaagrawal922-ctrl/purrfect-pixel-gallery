@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
-import { ArrowRight, Github, ExternalLink, Mail, Linkedin, Pin, GraduationCap } from "lucide-react";
+import { ArrowDown, ArrowRight, Github, ExternalLink, Mail, Linkedin, Pin, GraduationCap } from "lucide-react";
 import heroCat from "@/assets/hero-cat.png";
 import sleepingCat from "@/assets/sleeping-cat.png";
 import mailboxCat from "@/assets/mailbox-cat.png";
@@ -76,7 +76,10 @@ function Hero() {
           <Cat src={heroCat} alt="A cute ginger cat sitting in the garden" message="psst... welcome!" w={1024} h={1024} eager />
         </div>
       </div>
-      <a href="#about" className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce-soft font-hand text-xl text-muted-foreground">scroll to explore ↓</a>
+      <a href="#about" className="absolute bottom-16 left-1/2 flex -translate-x-1/2 animate-bounce-soft items-center gap-1.5 font-hand text-xl text-muted-foreground">
+        scroll to explore
+        <ArrowDown className="mt-1 h-4 w-4" aria-hidden />
+      </a>
     </section>
   );
 }
