@@ -124,27 +124,57 @@ export function SocialIcons() {
 }
 
 export function WalkingCat() {
-  const leg = "absolute bottom-0 h-[14px] w-[4px] origin-top rounded-full bg-foreground/80 animate-step";
+  const fur = "#F6C453";
+  const furDark = "#E8A93E";
+  const cream = "#FFF3D6";
+  const pink = "#F4A7B9";
+  const leg = "absolute bottom-0 h-[13px] w-[5px] origin-top rounded-full animate-step";
   return (
     <div aria-hidden className="pointer-events-none fixed bottom-1 left-0 z-40 animate-walk" style={{ animationDelay: "6s" }}>
-      <div className="relative h-[34px] w-[64px] animate-bob">
-        {/* tail */}
-        <div className="absolute -left-2 top-1 h-[4px] w-[16px] origin-right -rotate-45 rounded-full bg-foreground/80 animate-sway" />
-        {/* body */}
-        <div className="absolute left-2 top-2 h-[18px] w-[38px] rounded-full bg-foreground/80" />
-        {/* head */}
-        <div className="absolute right-0 top-0 h-[16px] w-[16px] rounded-full bg-foreground/80">
-          {/* ears */}
-          <div className="absolute -top-1.5 left-0.5 h-0 w-0 border-x-4 border-b-[6px] border-x-transparent border-b-foreground/80" />
-          <div className="absolute -top-1.5 right-0.5 h-0 w-0 border-x-4 border-b-[6px] border-x-transparent border-b-foreground/80" />
+      <div className="relative h-[40px] w-[72px] animate-bob">
+        {/* tail — curls up */}
+        <div
+          className="absolute -left-1 top-0 h-[20px] w-[6px] origin-bottom rounded-full animate-sway"
+          style={{ backgroundColor: fur, transform: "rotate(35deg)" }}
+        />
+        {/* body — chubby oval */}
+        <div
+          className="absolute left-3 top-2.5 h-[20px] w-[40px] rounded-[50%]"
+          style={{ backgroundColor: fur }}
+        />
+        {/* belly patch */}
+        <div
+          className="absolute left-6 top-5 h-[11px] w-[24px] rounded-[50%]"
+          style={{ backgroundColor: cream }}
+        />
+        {/* stripes */}
+        <div className="absolute left-4 top-3 h-[8px] w-[3px] rounded-full" style={{ backgroundColor: furDark }} />
+        <div className="absolute left-[22px] top-2.5 h-[9px] w-[3px] rounded-full" style={{ backgroundColor: furDark }} />
+        {/* head — big and round */}
+        <div
+          className="absolute right-0 top-0 h-[20px] w-[20px] rounded-full"
+          style={{ backgroundColor: fur }}
+        >
+          {/* ears with pink insides */}
+          <div className="absolute -top-2 left-0.5 h-0 w-0 border-x-[5px] border-b-[7px] border-x-transparent" style={{ borderBottomColor: fur }} />
+          <div className="absolute -top-2 right-0.5 h-0 w-0 border-x-[5px] border-b-[7px] border-x-transparent" style={{ borderBottomColor: fur }} />
+          <div className="absolute -top-1 left-[5px] h-0 w-0 border-x-[2.5px] border-b-[3.5px] border-x-transparent" style={{ borderBottomColor: pink }} />
+          <div className="absolute -top-1 right-[5px] h-0 w-0 border-x-[2.5px] border-b-[3.5px] border-x-transparent" style={{ borderBottomColor: pink }} />
+          {/* muzzle */}
+          <div className="absolute bottom-0.5 right-0 h-[9px] w-[11px] rounded-full" style={{ backgroundColor: cream }} />
           {/* eye */}
-          <div className="absolute right-1 top-1.5 h-[3px] w-[3px] rounded-full bg-background" />
+          <div className="absolute right-[9px] top-[7px] h-[3.5px] w-[3.5px] rounded-full bg-foreground/80" />
+          {/* nose */}
+          <div className="absolute right-[2px] top-[10px] h-[3px] w-[3px] rounded-full" style={{ backgroundColor: pink }} />
+          {/* whiskers */}
+          <div className="absolute -right-1.5 top-[9px] h-px w-[6px] rotate-12 bg-foreground/40" />
+          <div className="absolute -right-1.5 top-[12px] h-px w-[6px] -rotate-6 bg-foreground/40" />
         </div>
         {/* legs — front pair and back pair step in alternation */}
-        <div className={leg} style={{ left: "14px" }} />
-        <div className={leg} style={{ left: "22px", animationDelay: ".25s" }} />
-        <div className={leg} style={{ left: "38px", animationDelay: ".25s" }} />
-        <div className={leg} style={{ left: "46px" }} />
+        <div className={leg} style={{ left: "16px", backgroundColor: furDark }} />
+        <div className={leg} style={{ left: "24px", backgroundColor: fur, animationDelay: ".25s" }} />
+        <div className={leg} style={{ left: "40px", backgroundColor: fur, animationDelay: ".25s" }} />
+        <div className={leg} style={{ left: "48px", backgroundColor: furDark }} />
       </div>
     </div>
   );
