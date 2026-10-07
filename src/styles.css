@@ -105,8 +105,9 @@
 @keyframes sway { 0%,100% { transform: rotate(-4deg) } 50% { transform: rotate(4deg) } }
 @keyframes breathe { 0%,100% { transform: scale(1) } 50% { transform: scale(1.025, 0.985) } }
 @keyframes walk { 0% { transform: translateX(-120px) } 100% { transform: translateX(calc(100vw + 120px)) } }
-@keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-3px) } }
-@keyframes step { 0%,100% { transform: rotate(18deg) } 50% { transform: rotate(-18deg) } }
+@keyframes bob { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-2px) } }
+@keyframes frame-a { 0% { opacity: 1 } 50% { opacity: 0 } 100% { opacity: 1 } }
+@keyframes frame-b { 0% { opacity: 0 } 50% { opacity: 1 } 100% { opacity: 0 } }
 @keyframes bounce-soft { 0%,100% { transform: translateY(0) } 50% { transform: translateY(6px) } }
 
 @utility animate-float { animation: float 7s ease-in-out infinite; }
@@ -114,7 +115,8 @@
 @utility animate-breathe { animation: breathe 4s ease-in-out infinite; transform-origin: bottom center; }
 @utility animate-walk { animation: walk 28s linear infinite; }
 @utility animate-bob { animation: bob .5s ease-in-out infinite; }
-@utility animate-step { animation: step .5s ease-in-out infinite; }
+@utility animate-frame-a { animation: frame-a .5s steps(1, end) infinite; }
+@utility animate-frame-b { animation: frame-b .5s steps(1, end) infinite; }
 @utility animate-bounce-soft { animation: bounce-soft 2s ease-in-out infinite; }
 
 @utility reveal {
