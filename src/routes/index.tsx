@@ -276,8 +276,8 @@ function Contact() {
               ))}
               <label className="block font-bold">
                 Message
-                <textarea name="message" rows={5} maxLength={1000} className={field} aria-invalid={!!errors.message} />
-                {errors.message && <span className="mt-1 block text-sm font-semibold text-destructive">{errors.message}</span>}
+                <textarea name="message" rows={5} maxLength={1000} className={field} aria-invalid={!!errors["message"]} />
+                {errors["message"] && <span className="mt-1 block text-sm font-semibold text-destructive">{errors["message"]}</span>}
               </label>
               <button type="submit" className={cn(btnPrimary, "w-full justify-center")}>Send Message 💌</button>
             </form>
