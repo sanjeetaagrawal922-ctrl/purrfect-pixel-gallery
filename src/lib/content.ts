@@ -1,9 +1,9 @@
 // Edit everything about the site here 🌷
 export const profile = {
   name: "Jyotsana Agrawal",
-  email: "your.email@example.com", // TODO: replace with your real email
-  github: "https://github.com/YOUR-USERNAME", // TODO: replace
-  linkedin: "https://www.linkedin.com/in/YOUR-PROFILE", // TODO: replace
+  email: "jyotsanaagrawal63@gmail.com",
+  github: "https://github.com/sanjeetaagrawal922-ctrl",
+  linkedin: "https://www.linkedin.com/in/jyotsana-agrawal-847965316/",
 };
 
 export const navItems = [
