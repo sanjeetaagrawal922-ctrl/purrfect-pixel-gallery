@@ -114,6 +114,7 @@
 @utility animate-breathe { animation: breathe 4s ease-in-out infinite; transform-origin: bottom center; }
 @utility animate-walk { animation: walk 28s linear infinite; }
 @utility animate-bob { animation: bob .5s ease-in-out infinite; }
+@utility animate-step { animation: step .5s ease-in-out infinite; }
 @utility animate-bounce-soft { animation: bounce-soft 2s ease-in-out infinite; }
 
 @utility reveal {
