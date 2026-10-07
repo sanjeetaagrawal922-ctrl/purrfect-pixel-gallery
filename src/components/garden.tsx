@@ -124,9 +124,28 @@ export function SocialIcons() {
 }
 
 export function WalkingCat() {
+  const leg = "absolute bottom-0 h-[14px] w-[4px] origin-top rounded-full bg-foreground/80 animate-step";
   return (
-    <div aria-hidden className="pointer-events-none fixed bottom-1 left-0 z-40 animate-walk text-3xl" style={{ animationDelay: "6s" }}>
-      <span className="inline-block animate-bob" style={{ transform: "scaleX(-1)" }}>🐈</span>
+    <div aria-hidden className="pointer-events-none fixed bottom-1 left-0 z-40 animate-walk" style={{ animationDelay: "6s" }}>
+      <div className="relative h-[34px] w-[64px] animate-bob">
+        {/* tail */}
+        <div className="absolute -left-2 top-1 h-[4px] w-[16px] origin-right -rotate-45 rounded-full bg-foreground/80 animate-sway" />
+        {/* body */}
+        <div className="absolute left-2 top-2 h-[18px] w-[38px] rounded-full bg-foreground/80" />
+        {/* head */}
+        <div className="absolute right-0 top-0 h-[16px] w-[16px] rounded-full bg-foreground/80">
+          {/* ears */}
+          <div className="absolute -top-1.5 left-0.5 h-0 w-0 border-x-4 border-b-[6px] border-x-transparent border-b-foreground/80" />
+          <div className="absolute -top-1.5 right-0.5 h-0 w-0 border-x-4 border-b-[6px] border-x-transparent border-b-foreground/80" />
+          {/* eye */}
+          <div className="absolute right-1 top-1.5 h-[3px] w-[3px] rounded-full bg-background" />
+        </div>
+        {/* legs — front pair and back pair step in alternation */}
+        <div className={leg} style={{ left: "14px" }} />
+        <div className={leg} style={{ left: "22px", animationDelay: ".25s" }} />
+        <div className={leg} style={{ left: "38px", animationDelay: ".25s" }} />
+        <div className={leg} style={{ left: "46px" }} />
+      </div>
     </div>
   );
 }
