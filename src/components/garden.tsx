@@ -123,58 +123,97 @@ export function SocialIcons() {
   );
 }
 
+/* ============ Cozy game-style pixel cat ============
+   Two hand-drawn frames, flipped like a sprite sheet so the paws
+   really alternate. Every "." gets a dark outline pixel if it sits
+   next to a coloured one, which gives the chunky game-sprite look. */
+const PIXEL = 2;
+const OUTLINE = "#5B4636";
+const FUR: Record<string, string> = {
+  Y: "#F6C453", // ginger fur
+  D: "#E8A93E", // back stripes
+  C: "#FFF3D6", // cream belly + paws
+  P: "#F4A7B9", // pink ears, nose, blush
+  K: "#4A3B2E", // eye
+};
+
+const CAT_A = [
+  "........................",
+  "....YY..........YY..YY..",
+  "...YY..........YPY..YPY.",
+  "..YY...........YYYYYYYY.",
+  ".YY............YYYYYYYY.",
+  ".YY............YYYYYYYY.",
+  ".YYYYYYYYDYYYDYYYYKKYYY.",
+  "....YYYDYYYDYYYDYYKKYYY.",
+  "...YYYYYYYYYYYYYYYYYCCP.",
+  "...YYYCCCCCCCCCYYYYYCPY.",
+  "...YYYCCCCCCCCCYYYYYCCY.",
+  "...YYYYCCCCCCCYYYYYYYYY.",
+  ".....YYYYYYYYYYYYYYYY...",
+  "....YY...YY.....YY..YY..",
+  "....YY...YY.....YY..YY..",
+  "....YY...CC.....YY..CC..",
+  "....CC..........CC......",
+];
+
+const CAT_B = [
+  "........................",
+  "..YY............YY..YY..",
+  ".YY............YPY..YPY.",
+  ".YY............YYYYYYYY.",
+  ".YY............YYYYYYYY.",
+  ".YY............YYYYYYYY.",
+  ".YYYYYYYYDYYYDYYYYKKYYY.",
+  "....YYYDYYYDYYYDYYKKYYY.",
+  "...YYYYYYYYYYYYYYYYYCCP.",
+  "...YYYCCCCCCCCCYYYYYCPY.",
+  "...YYYCCCCCCCCCYYYYYCCY.",
+  "...YYYYCCCCCCCYYYYYYYYY.",
+  ".....YYYYYYYYYYYYYYYY...",
+  "....YY...YY.....YY..YY..",
+  "....YY...YY.....YY..YY..",
+  "....CC...YY.....CC..YY..",
+  ".........CC.........CC..",
+];
+
+function spriteShadow(rows: string[]) {
+  const h = rows.length;
+  const w = rows[0].length;
+  const at = (x: number, y: number) => (y >= 0 && y < h && x >= 0 && x < w ? rows[y][x] : ".");
+  const px: string[] = [];
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      const ch = at(x, y);
+      let color = ch === "." ? "" : FUR[ch];
+      if (!color && (at(x - 1, y) !== "." || at(x + 1, y) !== "." || at(x, y - 1) !== "." || at(x, y + 1) !== ".")) {
+        color = OUTLINE;
+      }
+      if (color) px.push(`${x * PIXEL}px ${y * PIXEL}px 0 0 ${color}`);
+    }
+  }
+  return px.join(",");
+}
+
+const SHADOW_A = spriteShadow(CAT_A);
+const SHADOW_B = spriteShadow(CAT_B);
+const CAT_W = CAT_A[0].length * PIXEL;
+const CAT_H = CAT_A.length * PIXEL;
+
+function PixelCat({ shadow, className }: { shadow: string; className?: string }) {
+  return (
+    <div className={cn("relative", className)} style={{ width: CAT_W, height: CAT_H }}>
+      <div className="absolute left-0 top-0" style={{ width: PIXEL, height: PIXEL, boxShadow: shadow }} />
+    </div>
+  );
+}
+
 export function WalkingCat() {
-  const fur = "#F6C453";
-  const furDark = "#E8A93E";
-  const cream = "#FFF3D6";
-  const pink = "#F4A7B9";
-  const leg = "absolute bottom-0 h-[13px] w-[5px] origin-top rounded-full animate-step";
   return (
     <div aria-hidden className="pointer-events-none fixed bottom-1 left-0 z-40 animate-walk" style={{ animationDelay: "6s" }}>
-      <div className="relative h-[40px] w-[72px] animate-bob">
-        {/* tail — curls up */}
-        <div
-          className="absolute -left-1 top-0 h-[20px] w-[6px] origin-bottom rounded-full animate-sway"
-          style={{ backgroundColor: fur, transform: "rotate(35deg)" }}
-        />
-        {/* body — chubby oval */}
-        <div
-          className="absolute left-3 top-2.5 h-[20px] w-[40px] rounded-[50%]"
-          style={{ backgroundColor: fur }}
-        />
-        {/* belly patch */}
-        <div
-          className="absolute left-6 top-5 h-[11px] w-[24px] rounded-[50%]"
-          style={{ backgroundColor: cream }}
-        />
-        {/* stripes */}
-        <div className="absolute left-4 top-3 h-[8px] w-[3px] rounded-full" style={{ backgroundColor: furDark }} />
-        <div className="absolute left-[22px] top-2.5 h-[9px] w-[3px] rounded-full" style={{ backgroundColor: furDark }} />
-        {/* head — big and round */}
-        <div
-          className="absolute right-0 top-0 h-[20px] w-[20px] rounded-full"
-          style={{ backgroundColor: fur }}
-        >
-          {/* ears with pink insides */}
-          <div className="absolute -top-2 left-0.5 h-0 w-0 border-x-[5px] border-b-[7px] border-x-transparent" style={{ borderBottomColor: fur }} />
-          <div className="absolute -top-2 right-0.5 h-0 w-0 border-x-[5px] border-b-[7px] border-x-transparent" style={{ borderBottomColor: fur }} />
-          <div className="absolute -top-1 left-[5px] h-0 w-0 border-x-[2.5px] border-b-[3.5px] border-x-transparent" style={{ borderBottomColor: pink }} />
-          <div className="absolute -top-1 right-[5px] h-0 w-0 border-x-[2.5px] border-b-[3.5px] border-x-transparent" style={{ borderBottomColor: pink }} />
-          {/* muzzle */}
-          <div className="absolute bottom-0.5 right-0 h-[9px] w-[11px] rounded-full" style={{ backgroundColor: cream }} />
-          {/* eye */}
-          <div className="absolute right-[9px] top-[7px] h-[3.5px] w-[3.5px] rounded-full bg-foreground/80" />
-          {/* nose */}
-          <div className="absolute right-[2px] top-[10px] h-[3px] w-[3px] rounded-full" style={{ backgroundColor: pink }} />
-          {/* whiskers */}
-          <div className="absolute -right-1.5 top-[9px] h-px w-[6px] rotate-12 bg-foreground/40" />
-          <div className="absolute -right-1.5 top-[12px] h-px w-[6px] -rotate-6 bg-foreground/40" />
-        </div>
-        {/* legs — front pair and back pair step in alternation */}
-        <div className={leg} style={{ left: "16px", backgroundColor: furDark }} />
-        <div className={leg} style={{ left: "24px", backgroundColor: fur, animationDelay: ".25s" }} />
-        <div className={leg} style={{ left: "40px", backgroundColor: fur, animationDelay: ".25s" }} />
-        <div className={leg} style={{ left: "48px", backgroundColor: furDark }} />
+      <div className="relative animate-bob">
+        <PixelCat shadow={SHADOW_A} className="animate-frame-a" />
+        <PixelCat shadow={SHADOW_B} className="animate-frame-b absolute left-0 top-0" />
       </div>
     </div>
   );
