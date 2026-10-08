@@ -2,6 +2,8 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Github, Linkedin, Menu, X } from "lucide-react";
 import { navItems, profile } from "@/lib/content";
 import { cn } from "@/lib/utils";
+import catWalkA from "@/assets/walking-cat.png";
+import catWalkB from "@/assets/walking-cat-b.png";
 
 /* Cat with hover speech bubble */
 export function Cat({ src, alt, message, className, imgClassName, w, h, eager }: {
@@ -127,93 +129,14 @@ export function SocialIcons() {
    Two hand-drawn frames, flipped like a sprite sheet so the paws
    really alternate. Every "." gets a dark outline pixel if it sits
    next to a coloured one, which gives the chunky game-sprite look. */
-const PIXEL = 2;
-const OUTLINE = "#5B4636";
-const FUR: Record<string, string> = {
-  Y: "#F6C453", // ginger fur
-  D: "#E8A93E", // back stripes
-  C: "#FFF3D6", // cream belly + paws
-  P: "#F4A7B9", // pink ears, nose, blush
-  K: "#4A3B2E", // eye
-};
-
-const CAT_A = [
-  "....YY..................",
-  "...YY...........YY..YY..",
-  "..YY...........YPY..YPY.",
-  ".YY............YYYYYYYY.",
-  ".YY............YYYYYYYY.",
-  ".YY............YYYYYYYY.",
-  ".YYYYYYYYDYYYDYYYYKKYYY.",
-  "....YYYDYYYDYYYDYYKKYYY.",
-  "...YYYYYYYYYYYYYYYYYCCP.",
-  "...YYYCCCCCCCCCYYYYYCPY.",
-  "...YYYCCCCCCCCCYYYYYCCY.",
-  "...YYYYCCCCCCCYYYYYYYYY.",
-  ".....YYYYYYYYYYYYYYYY...",
-  "....YY..DD......DD.YY...",
-  "....YY..DD......DD.YY...",
-  "....YY.............YY...",
-  "....CC.............CC...",
-];
-
-const CAT_B = [
-  "..YY..................",
-  ".YY.............YY..YY..",
-  ".YY............YPY..YPY.",
-  ".YY............YYYYYYYY.",
-  ".YY............YYYYYYYY.",
-  ".YY............YYYYYYYY.",
-  ".YYYYYYYYDYYYDYYYYKKYYY.",
-  "....YYYDYYYDYYYDYYKKYYY.",
-  "...YYYYYYYYYYYYYYYYYCCP.",
-  "...YYYCCCCCCCCCYYYYYCPY.",
-  "...YYYCCCCCCCCCYYYYYCCY.",
-  "...YYYYCCCCCCCYYYYYYYYY.",
-  ".....YYYYYYYYYYYYYYYY...",
-  "....DD...YY.....YY.DD...",
-  "....DD...YY.....YY.DD...",
-  ".........YY.....YY......",
-  ".........CC.....CC......",
-];
-
-function spriteShadow(rows: string[]) {
-  const h = rows.length;
-  const w = rows[0].length;
-  const at = (x: number, y: number) => (y >= 0 && y < h && x >= 0 && x < w ? rows[y][x] : ".");
-  const px: string[] = [];
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const ch = at(x, y);
-      let color = ch === "." ? "" : FUR[ch];
-      if (!color && (at(x - 1, y) !== "." || at(x + 1, y) !== "." || at(x, y - 1) !== "." || at(x, y + 1) !== ".")) {
-        color = OUTLINE;
-      }
-      if (color) px.push(`${x * PIXEL}px ${y * PIXEL}px 0 0 ${color}`);
-    }
-  }
-  return px.join(",");
-}
-
-const SHADOW_A = spriteShadow(CAT_A);
-const SHADOW_B = spriteShadow(CAT_B);
-const CAT_W = CAT_A[0].length * PIXEL;
-const CAT_H = CAT_A.length * PIXEL;
-
-function PixelCat({ shadow, className }: { shadow: string; className?: string }) {
-  return (
-    <div className={cn("relative", className)} style={{ width: CAT_W, height: CAT_H }}>
-      <div className="absolute left-0 top-0" style={{ width: PIXEL, height: PIXEL, boxShadow: shadow }} />
-    </div>
-  );
-}
+const CAT_W = 56; // display width in px; height follows the sprite's aspect ratio
 
 export function WalkingCat() {
   return (
     <div aria-hidden className="pointer-events-none fixed bottom-1 left-0 z-40 animate-walk" style={{ animationDelay: "6s" }}>
-      <div className="relative animate-bob">
-        <PixelCat shadow={SHADOW_A} className="animate-frame-a" />
-        <PixelCat shadow={SHADOW_B} className="animate-frame-b absolute left-0 top-0" />
+      <div className="relative animate-bob" style={{ width: CAT_W }}>
+        <img src={catWalkA} alt="" width={CAT_W} className="animate-frame-a block w-full [image-rendering:pixelated]" draggable={false} />
+        <img src={catWalkB} alt="" width={CAT_W} className="animate-frame-b absolute left-0 top-0 block w-full [image-rendering:pixelated]" draggable={false} />
       </div>
     </div>
   );
