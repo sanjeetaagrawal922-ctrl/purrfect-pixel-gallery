@@ -178,7 +178,6 @@ function Projects() {
       <div className="grid gap-6 md:grid-cols-3">
         {projects.map((p, i) => (
           <article key={p.name} className="cozy-card relative flex flex-col overflow-visible p-4">
-            {i === 0 && <span aria-hidden className="absolute -right-3 -top-7 text-4xl transition-transform hover:-translate-y-2" title="you found me!">🐈‍⬛</span>}
             <div className={cn("grid aspect-[4/3] place-items-center rounded-[1.25rem] text-6xl", p.tone)}>
               <span className="transition-transform duration-500 hover:scale-110">{p.emoji}</span>
             </div>
