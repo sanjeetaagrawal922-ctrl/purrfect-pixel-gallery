@@ -20,6 +20,10 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    scripts: [
+      { src: "https://cdn.botpress.cloud/webchat/v5.0/inject.js" },
+      { src: "https://files.bpcontent.cloud/2026/10/14/11/20261014114342-7QYBL2ZD.js", defer: true },
+    ],
   }),
   component: Index,
 });
